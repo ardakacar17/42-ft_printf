@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_unsigned.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akacar <akacar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/08 17:34:03 by akacar            #+#    #+#             */
-/*   Updated: 2026/09/12 19:42:42 by akacar           ###   ########.fr       */
+/*   Created: 2026/09/12 15:38:31 by akacar            #+#    #+#             */
+/*   Updated: 2026/09/12 19:42:34 by akacar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+int	ft_print_unsigned(unsigned int n)
+{
+	int	count;
 
-int	ft_printf(const char *format, ...);
-int	ft_format_check(char specifier, va_list *args);
-int	ft_print_char(int c);
-int	ft_print_string(char *str);
-int	ft_print_nbr(int n);
-int	ft_print_unsigned(unsigned int n);
-int	ft_print_hex(unsigned long n, char format);
-int	ft_print_ptr(unsigned long n);
-
-#endif
+	count = 0;
+	if (n > 9)
+		count += ft_print_unsigned(n / 10);
+	count += ft_print_char((n % 10) + '0');
+	return (count);
+}

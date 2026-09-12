@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_print_hex.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akacar <akacar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/08 17:34:03 by akacar            #+#    #+#             */
-/*   Updated: 2026/09/12 19:42:42 by akacar           ###   ########.fr       */
+/*   Created: 2026/09/12 15:39:30 by akacar            #+#    #+#             */
+/*   Updated: 2026/09/12 19:42:25 by akacar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-# include <stdarg.h>
-# include <unistd.h>
+int	ft_print_hex(unsigned long n, char format)
+{
+	int		count;
+	char	*base;
 
-int	ft_printf(const char *format, ...);
-int	ft_format_check(char specifier, va_list *args);
-int	ft_print_char(int c);
-int	ft_print_string(char *str);
-int	ft_print_nbr(int n);
-int	ft_print_unsigned(unsigned int n);
-int	ft_print_hex(unsigned long n, char format);
-int	ft_print_ptr(unsigned long n);
-
-#endif
+	count = 0;
+	if (format == 'x')
+		base = "0123456789abcdef";
+	else
+		base = "0123456789ABCDEF";
+	if (n >= 16)
+		count += ft_print_hex(n / 16, format);
+	count += ft_print_char(base[n % 16]);
+	return (count);
+}
