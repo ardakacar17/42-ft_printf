@@ -6,7 +6,7 @@
 /*   By: akacar <akacar@student.42istanbul.com.tr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/08 17:51:37 by akacar            #+#    #+#             */
-/*   Updated: 2026/09/12 19:42:39 by akacar           ###   ########.fr       */
+/*   Updated: 2026/09/15 14:03:48 by akacar           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_format_check(char specifier, va_list *args)
 	else if (specifier == 'u')
 		count += ft_print_unsigned(va_arg(*args, unsigned int));
 	else if (specifier == 'x' || specifier == 'X')
-		count += ft_print_hex(va_arg(*args, unsigned long), specifier);
+		count += ft_print_hex(va_arg(*args, unsigned int), specifier);
 	return (count);
 }
 
